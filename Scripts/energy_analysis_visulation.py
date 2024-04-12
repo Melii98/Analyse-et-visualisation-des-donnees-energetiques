@@ -6,14 +6,12 @@ from statsmodels.tsa.arima.model import ARIMA
 from Data_Analysis import * 
 
 
-df = load_data(file_path)
-
+df = pd.read_csv('eco2mix-national-tr.csv', sep=';')
 
 option = st.sidebar.selectbox(
     'Choisissez le graphique que vous voulez afficher:',
     ('Consommation par source', 'Consommation au fil du temps', 'Relation énergie-CO2', 'Heatmap de corrélation', 'Boxplot de la consommation', 'Consommation par année', 'Violon de la consommation')
 )
-
 
 if option == 'Consommation par source':
     st.subheader("Consommation d'énergie par source")
@@ -36,12 +34,6 @@ elif option == 'Heatmap de corrélation':
             Corrélation avec la consommation: La variable "consommation" a divers degrés de corrélation avec d'autres variables, suggérant que certains types de production d'énergie sont plus directement liés à la consommation globale.
             Production d'énergie et échanges commerciaux: Il semble y avoir des corrélations entre les types de production d'énergie (nucléaire, solaire, etc.) et certains échanges commerciaux avec d'autres pays (éch_comm_*), ce qui pourrait indiquer une relation entre la production d'énergie domestique et les flux d'import-export""")
     
-# elif option == 'Prévision ARIMA':
-#     st.subheader("Prévision de la consommation d'énergie avec ARIMA")
-#     forecast = forecast_arima(df)
-#     plot_forecast(df, forecast) 
-#     st.write("Cette prévision ARIMA nous aide à comprendre les tendances futures possibles de la consommation d'énergie basées sur les données historiques.")
-
 elif option == 'Boxplot de la consommation':
     st.subheader("Boxplot de la consommation d'énergie")
     boxplot_energy_consumption(df)

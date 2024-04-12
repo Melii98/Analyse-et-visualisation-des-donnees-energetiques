@@ -5,35 +5,31 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-
-
-
 file = 'eco2mix-national-tr.csv'
-# path_fichier = os.path.join('Dataset', file)
-
-df = pd.read_csv(file, sep=';')
+df = pd.read_csv(file, sep=';',low_memory=False,skiprows=1, encoding='Latin1')
+print(df.columns)
 
 # """ Suppression colonnes jugées peu pertinentes pour la suite des analyses   """
-def drop_columns(df, columns_to_drop):
-    """
-    Supprime les colonnes spécifiées d'un DataFrame.
+# def drop_columns(df, columns_to_drop):
+#     """
+#     Supprime les colonnes spécifiées d'un DataFrame.
     
-    Args:
-    - df : DataFrame : Le DataFrame à modifier.
-    - columns_to_drop : list : Liste des noms des colonnes à supprimer.
+#     Args:
+#     - df : DataFrame : Le DataFrame à modifier.
+#     - columns_to_drop : list : Liste des noms des colonnes à supprimer.
     
-    Returns:
-    - df : DataFrame : Le DataFrame avec les colonnes supprimées.
-    """
-    return df.drop(columns_to_drop, axis=1)
+#     Returns:
+#     - df : DataFrame : Le DataFrame avec les colonnes supprimées.
+#     """
+#     return df.drop(columns_to_drop, axis=1)
 
-# """ Liste des colonnes à supprimer """
-columns_to_drop = ["stockage_batterie", "destockage_batterie", "gaz_autres", "eolien_offshore",
-                   "eolien_terrestre", "date_heure" , "ech_comm_angleterre", "ech_comm_espagne",
-                   "ech_comm_italie" ,"ech_comm_suisse" , "ech_comm_allemagne_belgique"]
+# # """ Liste des colonnes à supprimer """
+# columns_to_drop = ["stockage_batterie", "destockage_batterie", "gaz_autres", "eolien_offshore",
+#                    "eolien_terrestre", "date_heure" , "ech_comm_angleterre", "ech_comm_espagne",
+#                    "ech_comm_italie" ,"ech_comm_suisse" , "ech_comm_allemagne_belgique"]
 
-# """ Appel de la fonction pour supprimer les colonnes """
-df = drop_columns(df, columns_to_drop)
+# # """ Appel de la fonction pour supprimer les colonnes """
+# df = drop_columns(df, columns_to_drop)
 
 # """ Affichage du DataFrame résultant """
 pd.set_option('display.max_columns', None)
