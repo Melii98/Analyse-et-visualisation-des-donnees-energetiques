@@ -32,6 +32,8 @@ print(df.columns)
 # df = drop_columns(df, columns_to_drop)
 
 # """ Affichage du DataFrame résultant """
+
+
 pd.set_option('display.max_columns', None)
 
 

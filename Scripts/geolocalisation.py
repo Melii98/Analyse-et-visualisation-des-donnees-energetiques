@@ -44,7 +44,7 @@ def calculate_consumption_totals(df, year):
     return consumption_totals
 
 # Titre de la page
-st.title('Répartition de la consommation d’électricité française par région')
+st.title('Répartition de la consommation d’énergie par région')
 
 # Sélection de l'année avec un curseur dans la barre latérale
 year_to_filter = st.sidebar.slider('Année', int(df['annee'].dt.year.min()), int(df['annee'].dt.year.max()))
