@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pydeck as pdk
+from scipy import stats
+
 
 # Configuration de la page
 st.set_page_config(page_title='Analyse de la Consommation Énergétique', layout="wide")
@@ -38,13 +40,13 @@ df_geo['region'].fillna('Inconnu', inplace=True)
 df_geo['filiere'] = df_geo['filiere'].astype(str)
 
 # Onglets
-tab1, tab2 = st.tabs(["Visualisation", "Géolocalisation"])
+tab1, tab2, tab3 = st.tabs(["Visualisations", "Géolocalisation","Statistiques"])
 
 with tab1:
     st.subheader("Visualisations diverses")
     # Sélection du type de graphique
     graph_type = st.selectbox("Choisir le type de graphique", 
-                              ["Histogramme", "Boxplot", "Line Plot", "Bar Plot"], key='graph_type')
+                              ["Histogramme", "Boxplot" , "Heatmap"], key='graph_type')
     
     # Sélection des colonnes à visualiser
     selected_columns = st.multiselect("Sélectionnez les colonnes à visualiser", df.columns, key='columns')
@@ -53,7 +55,7 @@ with tab1:
         if not selected_columns:
             st.error("Veuillez sélectionner au moins une colonne.")
         else:
-            # On convertit toutes les colonnes sélectionnées en numérique, ignorons les erreurs
+            # On convertit toutes les colonnes sélectionnées en numérique
             df_numeric = df[selected_columns].apply(pd.to_numeric, errors='coerce')
             df_numeric = df_numeric.dropna()
 
@@ -91,3 +93,15 @@ with tab2:
         map_style='mapbox://styles/mapbox/light-v9'
     ))
 
+with tab3:
+    st.subheader("Analyses statistiques")
+    st.markdown("### Statistiques Descriptives")
+    if st.button('Afficher les statistiques descriptives'):
+
+        st.write(df.describe())
+
+    st.markdown("### Corrélation entre les variables")
+    if st.button('Afficher la matrice de corrélation'):
+        st.write(df.corr())
+    
+    

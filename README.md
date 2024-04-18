@@ -16,6 +16,7 @@ Pour exécuter ce projet, vous aurez besoin de Python 3.8+ ainsi que des paquets
 - Streamlit
 
 Vous pouvez installer toutes les dépendances nécessaires en exécutant :
+'pip install -r requirements.txt' 
 
 ## **Utilisation**
 
@@ -24,7 +25,7 @@ Pour lancer l'analyse des données, exécutez chaque script dans l'ordre suivant
 - `Preprocessing.py` pour nettoyer et préparer les données à être exploités.
 - `energy_analysis_visulation.py` pour générer des visualisations statiques des données analysées via Streamlit, une explication de chaque visualtion est disponible en selectionnant la visualisation que l'on souhaite observer sur le menu deroulant à gauche.
 - `geolocalisation.py` permet de générer une heatmap montrant la consommation énergetique par regionsen France 
-- `application.py` pour démarrer une interface Streamlit qui permet une exploration interactive des données (visualisation statistique avec possibilité  de choisir le type de visualisation et géolocalisation)
+- `application.py` pour démarrer une interface Streamlit qui permet une exploration interactive des données (visualisation statistique avec possibilité  de choisir le type de visualisation et géolocalisation et analyses statistiques )
 
 
 ## **Fonctionnalités**
