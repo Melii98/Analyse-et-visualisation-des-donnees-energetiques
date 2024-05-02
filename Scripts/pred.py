@@ -75,8 +75,8 @@ learning_rates = [0.001, 0.01, 0.1]
 for lr in learning_rates:
     print(f"\nEvaluating model with learning rate: {lr}")
     model = Sequential([
-        Dense(138, activation='relu', input_shape=(X_train.shape[1],)),
-        Dense(138, activation='relu'),
+        Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
+        Dense(128, activation='relu'),
         Dense(1)
     ])
     model.compile(optimizer=Adam(learning_rate=lr), loss='mse')
@@ -173,7 +173,7 @@ if lr == 0.01:
 # Affichage de la distribution de la variable 'consommation'
 plt.figure(figsize=(10, 5))
 plt.hist(data['consommation'], bins=30, color='blue', alpha=0.7)
-plt.title('Distribution de la consommationt')
+plt.title('Distribution de la consommation')
 plt.xlabel('Consommation')
 plt.ylabel('Nombre d\'observations')
 plt.show()
