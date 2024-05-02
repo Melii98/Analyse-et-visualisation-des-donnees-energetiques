@@ -25,7 +25,8 @@ Pour lancer l'analyse des données, exécutez chaque script dans l'ordre suivant
 - `Preprocessing.py` pour nettoyer et préparer les données à être exploités.
 - `energy_analysis_visulation.py` pour générer des visualisations statiques des données analysées via Streamlit, une explication de chaque visualtion est disponible en selectionnant la visualisation que l'on souhaite observer sur le menu deroulant à gauche.
 - `geolocalisation.py` permet de générer une heatmap montrant la consommation énergetique par regionsen France 
-- `application.py` pour démarrer une interface Streamlit qui permet une exploration interactive des données (visualisation statistique avec possibilité  de choisir le type de visualisation et géolocalisation et analyses statistiques )
+- `main.py` pour démarrer une interface Streamlit qui permet une exploration interactive des données (visualisation statistique avec possibilité  de choisir le type de visualisation et géolocalisation et analyses statistiques )
+- `pred.py`script permettant de faire une prediction de la consommation d'énérgie 
 
 
 ## **Fonctionnalités**
@@ -34,5 +35,6 @@ Pour lancer l'analyse des données, exécutez chaque script dans l'ordre suivant
 - **Analyse Exploratoire** : Calcul des statistiques descriptives et analyse des tendances.
 - **Visualisation des Données** : Création de graphiques statiques et interactifs pour visualiser les tendances de la production et de la consommation énergétique.
 - **Application  Interactive** : Une interface streamlit pour explorer les données de manière interactive.
+- **Predicitons** : construction d'un modele de prediction de la consommation 
 
 

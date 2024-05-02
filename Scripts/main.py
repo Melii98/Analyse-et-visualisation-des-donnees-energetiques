@@ -103,5 +103,8 @@ with tab3:
     st.markdown("### Corrélation entre les variables")
     if st.button('Afficher la matrice de corrélation'):
         st.write(df.corr())
+
+
+
     
     

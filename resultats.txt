@@ -1,0 +1,10 @@
+Test loss1: 9086.24609375
+Diminution de la perte : La perte a régulièrement diminué, ce qui indique que l'entraînement se déroule comme prévu. 
+Néanmoins, la perte sur le jeu de validation semble fluctuer et présenter des pics, ce qui pourrait indiquer un surapprentissage ou une instabilité pendant l'entraînement.
+Fluctuations dans la perte de validation : Les sauts occasionnels dans la perte de validation pourraient être dus à une taille de lot trop grande ou trop petite, un taux d'apprentissage inapproprié, ou des données qui ne sont pas tout à fait représentatives ou uniformes
+Test Loss2 avec pas de 0.001: 9080.7177734375
+
+
+
+
+en fixant la date et un localisation le model doit etre capable de predire la consommation 
