@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pydeck as pdk
 from scipy import stats
+import numpy as np 
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import load_model
+from datetime import datetime
+
 
 
 # Configuration de la page
@@ -13,6 +18,11 @@ st.title('Analyse de la Consommation Énergétique')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
+model = load_model('my_model.keras')
+
+def get_model():
+    return model
+model = get_model()
 
 # Chargement des données
 df_geo = pd.read_csv('donnée concatenées.csv', usecols=['annee', 'region', 'filiere', 'valeur'], encoding='Latin1', sep=';')
@@ -40,7 +50,7 @@ df_geo['region'].fillna('Inconnu', inplace=True)
 df_geo['filiere'] = df_geo['filiere'].astype(str)
 
 # Onglets
-tab1, tab2, tab3 = st.tabs(["Visualisations", "Géolocalisation","Statistiques"])
+tab1, tab2, tab3, tab4 = st.tabs(["Visualisations", "Géolocalisation","Statistiques","Predictions"])
 
 with tab1:
     st.subheader("Visualisations diverses")
@@ -104,7 +114,34 @@ with tab3:
     if st.button('Afficher la matrice de corrélation'):
         st.write(df.corr())
 
+################################################
+# Préparation des données
 
 
+
+import joblib
+scaler_X = joblib.load('scaler_X.pkl')
+with tab4:
+    st.subheader("Prédiction de la consommation énergétique")
+    # Création du formulaire pour saisir les données de prédiction
+    with st.form(key='my_form'):
+        datetime_input = st.text_input(label="Entrez la date et l'heure (YYYY-MM-DD HH:MM:SS)", value="2024-01-01 12:00:00")
+        submit_button = st.form_submit_button(label='Prédire')
+
+    if submit_button:
+        # Convertir la chaîne de date/heure en caractéristiques numériques
+        date_time_obj = datetime.strptime(datetime_input, '%Y-%m-%d %H:%M:%S')
+        hour = date_time_obj.hour
+        day_of_week = date_time_obj.weekday()
+
+        # Préparer les données pour le modèle
+        input_features = np.array([[hour, day_of_week]])
+        input_features = scaler_X.transform(input_features)  #
+        
+        # Faire la prédiction
+        prediction = model.predict(input_features)
+        predicted_value = prediction[0][0]
+
+        st.write(f"La prédiction de la consommation énergétique pour {datetime_input} est {predicted_value}")
     
     

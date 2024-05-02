@@ -12,7 +12,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
 import numpy as np 
 import matplotlib.pyplot as plt
-
+import joblib
 
 
 # Chemin vers le fichier CSV
@@ -46,6 +46,7 @@ data.fillna(data.mean(), inplace=True)  # Utilisation d'imputation pour toutes l
 scaler_X = MinMaxScaler()
 scaler_y = StandardScaler()
 
+
 X = data[numerical_cols]
 X_scaled = scaler_X.fit_transform(X)
 y = data['consommation']
@@ -53,7 +54,11 @@ y_scaled = scaler_y.fit_transform(y.values.reshape(-1, 1))
 
 # Séparation des données en ensembles d'entraînement et de test
 X_train, X_test, y_train_scaled, y_test_scaled = train_test_split(X_scaled, y_scaled, test_size=0.2, random_state=42)
+X_train_scaled = scaler_X.fit_transform(X_train)  # Ajustement et transformation des données d'entraînement
 
+# Sauvegarde du scaler pour une utilisation ultérieure lors de la prédiction
+joblib.dump(scaler_X, 'scaler_X.pkl')
+joblib.dump(scaler_y, 'scaler_y.pkl')
 
 
 
@@ -70,8 +75,8 @@ learning_rates = [0.001, 0.01, 0.1]
 for lr in learning_rates:
     print(f"\nEvaluating model with learning rate: {lr}")
     model = Sequential([
-        Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
-        Dense(128, activation='relu'),
+        Dense(138, activation='relu', input_shape=(X_train.shape[1],)),
+        Dense(138, activation='relu'),
         Dense(1)
     ])
     model.compile(optimizer=Adam(learning_rate=lr), loss='mse')
@@ -113,8 +118,8 @@ learning_rates = [0.001, 0.01, 0.1]
 for lr in learning_rates:
     print(f"\nEvaluating model with learning rate: {lr}")
     model = Sequential([
-        Dense(135, activation='relu', input_shape=(X_train.shape[1],)),
-        Dense(135, activation='relu'),
+        Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
+        Dense(128, activation='relu'),
         Dense(1)
     ])
     model.compile(optimizer=Adam(learning_rate=lr), loss='mse')
@@ -195,8 +200,7 @@ plt.ylabel('Consommation')
 plt.legend()
 plt.show()
 
-
-
+model.save('my_model.keras')
 
 
 
