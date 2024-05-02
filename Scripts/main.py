@@ -18,7 +18,7 @@ st.title('Analyse de la Consommation Énergétique')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
-model = load_model('my_model.keras')
+model = load_model('my_model_0_01.keras')
 
 def get_model():
     return model
@@ -121,6 +121,7 @@ with tab3:
 
 import joblib
 scaler_X = joblib.load('scaler_X.pkl')
+scaler_y= joblib.load('scaler_y.pkl')
 with tab4:
     st.subheader("Prédiction de la consommation énergétique")
     # Création du formulaire pour saisir les données de prédiction
@@ -139,6 +140,8 @@ with tab4:
         input_features = scaler_X.transform(input_features)  #
         
         # Faire la prédiction
+        predicted_value_scaled = model.predict(input_features)  # Prédiction avec le modèle
+        predicted_value = scaler_y.inverse_transform(predicted_value_scaled) 
         prediction = model.predict(input_features)
         predicted_value = prediction[0][0]
 

@@ -161,11 +161,14 @@ for lr in learning_rates:
     test_rmse = np.sqrt(mean_squared_error(y_test_scaled, test_predictions))
     print("Test RMSE:", test_rmse)
 
-    # Pour les données d'entraînement, si nécessaire
+ 
     train_predictions = model.predict(X_train).flatten()
     train_rmse = np.sqrt(mean_squared_error(y_train_scaled, train_predictions))
     print("Training RMSE:", train_rmse)
 
+if lr == 0.01:
+        model.save('my_model_0_01.keras')
+        print("Model 0.01 has been saved.")
 
 # Affichage de la distribution de la variable 'consommation'
 plt.figure(figsize=(10, 5))

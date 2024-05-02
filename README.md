@@ -22,11 +22,17 @@ Vous pouvez installer toutes les dépendances nécessaires en exécutant :
 Pour lancer l'analyse des données, exécutez chaque script dans l'ordre suivant :
 
 - `Preprocessing.py` pour nettoyer et préparer les données à être exploités.
+
 - `energy_analysis_visulation.py` pour générer des visualisations statiques des données analysées via Streamlit, une explication de chaque visualtion est disponible en selectionnant la visualisation que l'on souhaite observer sur le menu deroulant à gauche.
-- `geolocalisation.py` permet de générer une heatmap montrant la consommation énergetique par regionsen France 
+
+- `geolocalisation.py` permet de générer une heatmap montrant la consommation énergetique par regions en France 
+![alt text](image.png)
 
 - `main.py` pour démarrer une interface Streamlit qui permet une exploration interactive des données (visualisation statistique avec possibilité  de choisir le type de visualisation et géolocalisation et analyses statistiques )
 - `pred.py`script permettant de faire une prediction de la consommation d'énérgie 
+
+## **Modele**
+Le modele est enregistré dans 'my_model.keras', et est appelé  via la fonction load_model dans le script main.py
 
 
 ## **Fonctionnalités**
