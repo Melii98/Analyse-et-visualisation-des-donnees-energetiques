@@ -24,7 +24,7 @@ Pour lancer l'analyse des données, exécutez chaque script dans l'ordre suivant
 - `Preprocessing.py` pour nettoyer et préparer les données à être exploités.
 
 - `energy_analysis_visulation.py` pour générer des visualisations statiques des données analysées via Streamlit, une explication de chaque visualtion est disponible en selectionnant la visualisation que l'on souhaite observer sur le menu deroulant à gauche.
-![alt text](image-1.png)
+![alt text](<Capture d’écran 2024-05-02 124528.png>)
 
 - `geolocalisation.py` permet de générer une heatmap montrant la consommation énergetique par regions en France 
 ![alt text](image.png)
